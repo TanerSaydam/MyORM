@@ -1,10 +1,10 @@
 # Kendi ORM'iniz (Object-Relational Mapper)
 
-Bu proje, EF Core tarzında sıfırdan bir ORM (Object-Relational Mapper) yazmayı gösteren bir eğitim amaçlı projedir. Bu ORM, Read iþlemini gerçekleþtirebilmenizi sağlar.
+Bu proje, EF Core tarzında sıfırdan bir ORM (Object-Relational Mapper) yazmayı gösteren bir eğitim amaçlı projedir. Bu ORM, Read işlemini gerçekleştirebilmenizi sağlar.
 
 ## Proje Özeti
 
-Bu projede, bir veritabanı bağlamı (`DbContext`) ve varlık setleri (`DbSet`) oluþturma ve yönetme iþlemlerini gösteriyoruz. Örnek bir `Product` sınıfı kullanarak veritabanından veri çekme iþlemini gerçekleþtirdik.
+Bu projede, bir veritabanı bağlamı (`DbContext`) ve varlık setleri (`DbSet`) oluşturma ve yönetme işlemlerini gösteriyoruz. Örnek bir `Product` sınıfı kullanarak veritabanından veri çekme işlemini gerçekleştirdik.
 
 ### Koddan Örnekler
 
@@ -119,7 +119,7 @@ class MyContext
         foreach (var property in properties)
         {
             var entityType = property.PropertyType.GetGenericArguments().First();
-            var tableName = entityType.Name + "s"; // Basit bir tablo adı belirleme mantığı, özelleþtirilebilir
+            var tableName = entityType.Name + "s"; // Basit bir tablo adı belirleme mantığı, özelleştirilebilir
             var dbSetType = typeof(DbSet<>).MakeGenericType(entityType);
             var dbSetInstance = Activator.CreateInstance(dbSetType, Builder.ConnectionString, tableName);
             property.SetValue(this, dbSetInstance);
@@ -130,7 +130,7 @@ class MyContext
 
 ## Kullanım
 
-Projenin nasıl kullanılacağını göstermek için aþağıdaki örnek kodu inceleyebilirsiniz:
+Projenin nasıl kullanılacağını göstermek için aşağıdaki örnek kodu inceleyebilirsiniz:
 
 ```csharp
 ApplicationDbContext context = new();
