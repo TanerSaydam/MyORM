@@ -1,14 +1,14 @@
 # Kendi ORM'iniz (Object-Relational Mapper)
 
-Bu proje, EF Core tarzında sıfırdan bir ORM (Object-Relational Mapper) yazmayı gösteren bir eğitim amaçlı projedir. Bu ORM, Read işlemini gerçekleştirebilmenizi sağlar.
+Bu proje, EF Core tarzÄ±nda sÄ±fÄ±rdan bir ORM (Object-Relational Mapper) yazmayÄ± gÃ¶steren bir eÄŸitim amaÃ§lÄ± projedir. Bu ORM, Read iÃ¾lemini gerÃ§ekleÃ¾tirebilmenizi saÄŸlar.
 
-## Proje Özeti
+## Proje Ã–zeti
 
-Bu projede, bir veritabanı bağlamı (`DbContext`) ve varlık setleri (`DbSet`) oluşturma ve yönetme işlemlerini gösteriyoruz. Örnek bir `Product` sınıfı kullanarak veritabanından veri çekme işlemini gerçekleştirdik.
+Bu projede, bir veritabanÄ± baÄŸlamÄ± (`DbContext`) ve varlÄ±k setleri (`DbSet`) oluÃ¾turma ve yÃ¶netme iÃ¾lemlerini gÃ¶steriyoruz. Ã–rnek bir `Product` sÄ±nÄ±fÄ± kullanarak veritabanÄ±ndan veri Ã§ekme iÃ¾lemini gerÃ§ekleÃ¾tirdik.
 
-### Koddan Örnekler
+### Koddan Ã–rnekler
 
-#### Product Sınıfı
+#### Product SÄ±nÄ±fÄ±
 
 ```csharp
 record Product
@@ -28,7 +28,7 @@ record Product
 }
 ````
 
-#### ApplicationDbContext Sınıfı
+#### ApplicationDbContext SÄ±nÄ±fÄ±
 
 ```csharp
 class ApplicationDbContext : MyContext
@@ -41,7 +41,7 @@ class ApplicationDbContext : MyContext
 }
 ````
 
-#### DbSet Sınıfı
+#### DbSet SÄ±nÄ±fÄ±
 
 ```csharp
 class DbSet<T>
@@ -84,7 +84,7 @@ class DbSet<T>
 }
 ````
 
-#### MyContext ve MyContextBuilder Sınıfları
+#### MyContext ve MyContextBuilder SÄ±nÄ±flarÄ±
 
 ```csharp
 class MyContextBuilder
@@ -119,7 +119,7 @@ class MyContext
         foreach (var property in properties)
         {
             var entityType = property.PropertyType.GetGenericArguments().First();
-            var tableName = entityType.Name + "s"; // Basit bir tablo adı belirleme mantığı, özelleştirilebilir
+            var tableName = entityType.Name + "s"; // Basit bir tablo adÄ± belirleme mantÄ±ÄŸÄ±, Ã¶zelleÃ¾tirilebilir
             var dbSetType = typeof(DbSet<>).MakeGenericType(entityType);
             var dbSetInstance = Activator.CreateInstance(dbSetType, Builder.ConnectionString, tableName);
             property.SetValue(this, dbSetInstance);
@@ -128,9 +128,9 @@ class MyContext
 }
 ````
 
-## Kullanım
+## KullanÄ±m
 
-Projenin nasıl kullanılacağını göstermek için aşağıdaki örnek kodu inceleyebilirsiniz:
+Projenin nasÄ±l kullanÄ±lacaÄŸÄ±nÄ± gÃ¶stermek iÃ§in aÃ¾aÄŸÄ±daki Ã¶rnek kodu inceleyebilirsiniz:
 
 ```csharp
 ApplicationDbContext context = new();
@@ -139,4 +139,4 @@ Console.ReadLine();
 ```
 
 
-## Buraya kadar okuduysanız Repoyu yıldızlayarak destek verebilirsiniz :)
+## Buraya kadar okuduysanÄ±z Repoyu yÄ±ldÄ±zlayarak destek verebilirsiniz :)
